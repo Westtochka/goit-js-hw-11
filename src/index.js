@@ -16,7 +16,7 @@ async function onSubmit(e) {
     e.preventDefault();
     btnEl.classList.add('hidden');
     value = e.target.elements.searchQuery.value.trim();
-    if (!value) {Notify.failure('Sorry, there are no images matching your search query. Please try again.')
+    if (!value) {Notify.warning(`Sorry, there are no images matching your search query. Please try again.`)
       return;
     }
     page = 1;
@@ -27,14 +27,17 @@ async function onSubmit(e) {
     if (hits.length === 40) {
       btnEl.classList.remove('hidden');
     }
+    console.log(hits.length)
   } catch (error) {
     console.log(error.message);
+    Notify.failure(`We're sorry, but you've reached the end of search results.`)
   }
 }
 
 async function onClick() {
   try {
     page += 1;
+    console.log(page)
     const { totalHits, hits } = await getData(value, page);
     const markup = createCards(hits);
     addMarkup(markup);

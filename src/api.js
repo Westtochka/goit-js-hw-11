@@ -17,7 +17,8 @@ export const getData = async (name = '', page = 1) => {
       data: { totalHits, hits },
     } = await axios.get(`${BASE_URL}?${params}`)
 
-    return { totalHits, hits };
+    return { totalHits, hits }
+    
   } catch (error) {
     throw new Error(error);
   }
