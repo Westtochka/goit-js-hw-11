@@ -3,32 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homework 10</title>
+    <title>Homework 11</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <select class="breed-select"></select>
-    <p class="loader">Loading data, please wait...</p>
-    <p class="error">Oops! Something went wrong! Try reloading the page!</p>
-    <div class="cat-info"></div>
-  <div class="container">
-    <form class="search-form" id="search-form">
-      <input
-        type="text"
-        name="searchQuery"
-        autocomplete="off"
-        placeholder="Search images..."
-      />
-      <button type="submit">Search</button>
-    </form>
-  <!-- <form class="form-central">
-    <input class="input"
-    type="text"
-    name="subscribe-input"
-    class="subscribe-input"
-    placeholder="Subscribe">
-  </form>
-  <button type="submit" class="btn-subscribe">Subscribe</button> -->
+    <header>
+      <div class="container">
+      <form class="search-form js-search-form" id="search-form">
+        <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    </header>
+    <main>
+      <section>
+        <div class="container-add-btn">
+          <ul class="gallery js-gallery">
+          </ul>
+          <div class="btn-add-more">
+          <button type="button" class="js-btn hidden">Add more</button>
+        </div>
+        </div>
+      </section>
+    </main>
 </div>
     <script src="index.js" type="module"></script>
+    <script src="api.js" type="module"></script>
   </body>
 </html>
