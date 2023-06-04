@@ -26,8 +26,10 @@ async function onSubmit(e) {
     addMarkup(markup);
     if (hits.length === 40) {
       btnEl.classList.remove('hidden');
+
     }
     console.log(hits.length)
+    if(hits.length===0){Notify.warning(`Sorry, there are no images matching your search query. Please try again`)}
   } catch (error) {
     console.log(error.message);
     Notify.failure(`We're sorry, but you've reached the end of search results.`)
@@ -37,12 +39,14 @@ async function onSubmit(e) {
 async function onClick() {
   try {
     page += 1;
-    console.log(page)
+    console.log(page*40)
+    if({ totalHits, hits }={}){Notify.failure(`123  Sorry, there are no images matching your search query. Please try again.`)}
     const { totalHits, hits } = await getData(value, page);
     const markup = createCards(hits);
     addMarkup(markup);
     if (hits.length * page >= totalHits) {
-      btnEl.classList.add('hidden');
+      btnEl.classList.add('hidden')
+      Notify.failure(`We're sorry, but you've reached the end of search results.`)
     }
   } catch (error) {
     console.log(error.message);
