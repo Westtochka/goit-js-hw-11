@@ -29,7 +29,9 @@ async function onSubmit(e) {
       btnEl.classList.remove('hidden');
     }
     console.log(hits.length)
-    // if(hits.length===0){Notify.warning(`Sorry, there are no images matching your search query. Please try again`)}
+    if (hits.length >0){Notify.success(`Hooray! We found ${totalHits} images.`)}
+    
+    if(hits.length===0){Notify.warning(`Sorry, there are no images matching your search query. Please try again`)}
   } catch (error) {
     console.log(error.message);
     Notify.failure(`We're sorry, but you've reached the end of search results.`)
@@ -40,7 +42,8 @@ async function onClick() {
   try {
     page += 1;
     console.log(page*40)
-    // if({ totalHits, hits }={}){Notify.failure(`123  Sorry, there are no images matching your search query. Please try again.`)}
+    // if(hits=[]){Notify.failure(`123  Sorry, there are no images matching your search query. Please try again.`)}
+    
     const { totalHits, hits } = await getData(value, page);
     const markup = createCards(hits);
     addMarkup(markup);

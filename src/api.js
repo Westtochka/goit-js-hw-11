@@ -17,7 +17,7 @@ export const getData = async (name = '', page = 1) => {
     const {
       data: { totalHits, hits },
     } = await axios.get(`${BASE_URL}?${params}`);
-
+// if(totalHits===0){Notify.warning(`Your massive has not any elements!`)}
     return { totalHits, hits };
   } catch (error) {
     throw new Error(error);
