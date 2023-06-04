@@ -1,6 +1,7 @@
 import { getData } from './api';
 import { createCards } from './markup';
 import { Notify } from 'notiflix';
+// import axios from 'axios';
 
 const formEl = document.querySelector('.js-search-form');
 const galleryEl = document.querySelector('.js-gallery');
@@ -26,10 +27,9 @@ async function onSubmit(e) {
     addMarkup(markup);
     if (hits.length === 40) {
       btnEl.classList.remove('hidden');
-
     }
     console.log(hits.length)
-    if(hits.length===0){Notify.warning(`Sorry, there are no images matching your search query. Please try again`)}
+    // if(hits.length===0){Notify.warning(`Sorry, there are no images matching your search query. Please try again`)}
   } catch (error) {
     console.log(error.message);
     Notify.failure(`We're sorry, but you've reached the end of search results.`)
@@ -40,7 +40,7 @@ async function onClick() {
   try {
     page += 1;
     console.log(page*40)
-    if({ totalHits, hits }={}){Notify.failure(`123  Sorry, there are no images matching your search query. Please try again.`)}
+    // if({ totalHits, hits }={}){Notify.failure(`123  Sorry, there are no images matching your search query. Please try again.`)}
     const { totalHits, hits } = await getData(value, page);
     const markup = createCards(hits);
     addMarkup(markup);
@@ -49,7 +49,8 @@ async function onClick() {
       Notify.failure(`We're sorry, but you've reached the end of search results.`)
     }
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
+    Notify.failure(`Щось підшло не так(`)
   }
 }
 
