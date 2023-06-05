@@ -25,12 +25,13 @@ async function onSubmit(e) {
     const markup = createCards(hits);
     clearMarkup();
     addMarkup(markup);
-    if (hits.length === 40) {
-      btnEl.classList.remove('hidden');
+    if (hits.length >= 40) {
+      btnEl.classList.remove("hidden");
     }
-    console.log(hits.length)
-    if (hits.length >0){Notify.success(`Hooray! We found ${totalHits} images.`)}
+    console.log(hits.length*page)
     
+    if (hits.length >0){Notify.success(`Hooray! We found ${totalHits} images.`)}
+
     if(hits.length===0){Notify.warning(`Sorry, there are no images matching your search query. Please try again`)}
   } catch (error) {
     console.log(error.message);
@@ -40,20 +41,19 @@ async function onSubmit(e) {
 
 async function onClick() {
   try {
-    page += 1;
-    console.log(page*40)
-    // if(hits=[]){Notify.failure(`123  Sorry, there are no images matching your search query. Please try again.`)}
+    page += 1;    
     
     const { totalHits, hits } = await getData(value, page);
     const markup = createCards(hits);
     addMarkup(markup);
+  
     if (hits.length * page >= totalHits) {
-      btnEl.classList.add('hidden')
+      btnEl.classList.add("hidden")
       Notify.failure(`We're sorry, but you've reached the end of search results.`)
     }
   } catch (error) {
     // console.log(error.message);
-    Notify.failure(`Щось підшло не так(`)
+    Notify.failure(`Щось пішло не так(`)
   }
 }
 
@@ -66,3 +66,4 @@ function clearMarkup() {
 }
 
 
+// hits.length * page >= totalHits)

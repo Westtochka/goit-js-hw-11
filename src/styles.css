@@ -38,6 +38,7 @@ button{
   
   .hidden {
     display: none;}
+    
 .info{
         list-style-type:none;
         display: flex;
